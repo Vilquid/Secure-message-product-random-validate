@@ -12,15 +12,17 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
+public class SecurityConfig extends WebSecurityConfigurerAdapter
+{
     @Autowired
     private AuthenticationService authenticationService;
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception
+    {
         http
                 .authorizeRequests()
                 .antMatchers("/home", "/signup", "/css/**", "/js/**").permitAll()
@@ -32,17 +34,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception
+    {
         auth.authenticationProvider(this.authenticationService);
     }
 
     @Bean
-    public PasswordEncoder encoder() {
+    public PasswordEncoder encoder()
+    {
         return new BCryptPasswordEncoder(12);
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
+    public void configure(WebSecurity web) throws Exception
+    {
         web
                 .ignoring()
                 .antMatchers("/h2-console/**");
