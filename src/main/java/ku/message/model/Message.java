@@ -12,7 +12,6 @@ import java.util.UUID;
 @Entity
 public class Message
 {
-
     @Id
     @GeneratedValue(generator = "UUID")
     @Column(name = "id", updatable = false, nullable = false)

@@ -1,7 +1,6 @@
 package ku.message.controller;
 
 import ku.message.dto.MessageDto;
-import ku.message.model.Message;
 import ku.message.repository.MessageRepository;
 import ku.message.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,8 @@ public class MessageController
 
 	private MessageRepository repository;
 
-	public MessageController(MessageRepository repository) {
+	public MessageController(MessageRepository repository)
+	{
 		this.repository = repository;
 	}
 

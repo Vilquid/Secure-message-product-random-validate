@@ -9,8 +9,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
+
 
 @Service
 public class AuthenticationService implements AuthenticationProvider
@@ -22,7 +22,8 @@ public class AuthenticationService implements AuthenticationProvider
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+    public Authentication authenticate(Authentication authentication) throws AuthenticationException
+    {
         String username = authentication.getName();
         String password = authentication.getCredentials().toString();
 

@@ -3,6 +3,7 @@ package ku.message.service;
 import ku.message.dto.SignupDto;
 import ku.message.model.User;
 import ku.message.repository.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,9 @@ public class UserService
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     public boolean isUsernameAvailable(String username)
     {
