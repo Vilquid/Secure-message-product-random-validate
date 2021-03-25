@@ -2,6 +2,7 @@ package ku.message.config;
 
 import ku.message.service.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -11,11 +12,12 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
+import org.modelmapper.ModelMapper;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter
+public class SecurityConfig<ModelMapper> extends WebSecurityConfigurerAdapter
 {
     @Autowired
     private AuthenticationService authenticationService;
@@ -52,7 +54,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .ignoring()
                 .antMatchers("/h2-console/**");
     }
-
-
-
 }

@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Instant;
 import java.util.UUID;
 
 @Entity
@@ -22,4 +23,6 @@ public class User
 
     private String firstName;
     private String lastName;
+
+    private Instant createdAt;
 }

@@ -1,9 +1,9 @@
 package ku.message.model;
 
-import javax.persistence.*;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import javax.persistence.*;
+import java.time.Instant;
 import java.util.UUID;
 
 
@@ -20,4 +20,6 @@ public class Message
 
     private String user;
     private String text;
+
+    private Instant createdAt;
 }

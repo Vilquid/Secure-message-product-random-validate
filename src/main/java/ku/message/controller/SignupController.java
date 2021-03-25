@@ -1,5 +1,6 @@
 package ku.message.controller;
 
+import ku.message.dto.SignupDto;
 import ku.message.model.User;
 import ku.message.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,32 +11,37 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 @Controller
 @RequestMapping("/signup")
-public class SignupController {
+public class SignupController{
+	@Autowired
+	private UserService userService;
 
-    @Autowired
-    private UserService userService;
+	@GetMapping
+	public String signupView()
+	{
+		return "signup";
+	}
 
-    @GetMapping
-    public String signupView() {
-        return "signup";
-    }
+	@PostMapping
+	public String signupUser(@ModelAttribute SignupDto user, Model model)
+	{
+		String signupError = null;
 
-    @PostMapping
-    public String signupUser(@ModelAttribute User user, Model model) {
-        String signupError = null;
+		if (!userService.isUsernameAvailable(user.getUsername()))
+			signupError = "The username already exists.";
 
-        if (!userService.isUsernameAvailable(user.getUsername()))
-            signupError = "The username already exists.";
+		if (signupError == null)
+		{
+			userService.createUser(user);
+			model.addAttribute("signupSuccess", true);
+		}
+		else
+		{
+			model.addAttribute("signupError", signupError);
+		}
 
-        if (signupError == null) {
-            userService.createUser(user);
-            model.addAttribute("signupSuccess", true);
-        } else {
-            model.addAttribute("signupError", signupError);
-        }
-
-        return "signup";
-    }
+		return "signup";
+	}
 }
