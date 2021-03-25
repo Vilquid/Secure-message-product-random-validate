@@ -43,7 +43,7 @@ public class MessageController
 	public String postMessage(@ModelAttribute MessageDto message, Model model, Principal principal)
 	{
 		String username = principal.getName();
-		messageService.create(message, username);
+		messageService.createMessage(message, username);
 		model.addAttribute("messages", messageService.getMessages());
 
 		return "redirect:message";

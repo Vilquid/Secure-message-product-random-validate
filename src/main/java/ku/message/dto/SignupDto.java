@@ -12,7 +12,7 @@ public class SignupDto
 	@NotBlank
 	@Size(min=4, message = "Username must have at least 4 characters")
 	private String username;
-	
+
 	@NotBlank
 	@Size(min=12, max=128)
 	private String password;
