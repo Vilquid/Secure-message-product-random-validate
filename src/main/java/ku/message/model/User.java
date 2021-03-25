@@ -13,7 +13,6 @@ import java.util.UUID;
 @Entity
 public class User
 {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
@@ -23,6 +22,8 @@ public class User
 
     private String firstName;
     private String lastName;
-
+    private String email;
+    private String role;
+    
     private Instant createdAt;
 }

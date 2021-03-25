@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public class AuthenticationService implements AuthenticationProvider {
-
+public class AuthenticationService implements AuthenticationProvider
+{
     @Autowired
     private UserRepository repository;
 
@@ -28,8 +28,10 @@ public class AuthenticationService implements AuthenticationProvider {
 
         User user = repository.findByUsername(username);
 
-        if (user != null) {
-            if (passwordEncoder.matches(password, user.getPassword())) {
+        if (user != null)
+        {
+            if (passwordEncoder.matches(password, user.getPassword()))
+            {
                 return new UsernamePasswordAuthenticationToken(username, password, new ArrayList<>());
             }
         }
@@ -38,7 +40,8 @@ public class AuthenticationService implements AuthenticationProvider {
     }
 
     @Override
-    public boolean supports(Class<?> authentication) {
+    public boolean supports(Class<?> authentication)
+    {
         return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }
 }
